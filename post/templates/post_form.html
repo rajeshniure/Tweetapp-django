@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Post
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="shadow-card mx-auto" style="max-width: 600px;">
+        <h1 class="text-center mb-4">SnapNote</h1>
+        <h4 class="text-center mb-3">
+            {% if form.instance.pk %}
+                Edit Post
+            {% else %}
+                Create Post
+            {% endif %}
+        </h4>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="d-grid gap-2 mt-3">
+                <button class="btn btn-warning" type="submit">Submit</button>
+                <a href="{% url 'post_list' %}" class="btn btn-outline-light">Back to Post List</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
